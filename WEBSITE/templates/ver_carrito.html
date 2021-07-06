@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h1 class="text-center my-4">
+    CARRITO
+</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    {{ request.user }}
+                </div>
+                <div class="card-body">
+                    <ol>
+                        {% for item in items_carrito %}
+                        <li class="my-3">
+                            <span class="font-weight-bold">{{item.product.title}}</span> ${{item.price}}
+                            <a href="{% url 'eliminar_item_carrito' item.id%}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </li>
+                        {% empty %}
+                        <p class="my-3">El carrito se encuentra vacío.</p>
+                        {% endfor %}
+                    </ol>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-12 col-md-6">
+                            <a href="{% url 'vaciar_carrito' %}" class="btn btn-danger">VACIAR CARRITO</a>
+                            <button class="btn btn-primary">FINALIZAR COMPRA</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+{% endblock %}

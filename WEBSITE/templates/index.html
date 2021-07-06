@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-4 mx-auto">
+        {% for producto in lista_ultimos_productos %}
+        <div class="card-deck">
+            <div class="card text-white bg-dark mx-4 mb-3" style="min-width: 18rem; max-width: 18rem;">
+                <img src="/media/{{producto.image}}" class="card-img-top" style="max-height: 18rem; max-width : 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{producto.title}}</h5>
+                    <p class="card-text">$ {{producto.price}}</p>
+                    <a class="btn btn-sm btn-primary" href="{% url 'producto' producto.id %}">ver</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-12 col-md-6 col-lg-4 mx-auto text-center">
+            <h2>MÁS PRODUCTOS</h2>
+        </div>
+    </div>
+    <div class="row">
+        <ul>
+            {% for producto in lista_mas_productos %}
+            <li><a href="{% url 'producto' producto.id %}"><span
+                        class="text-capitalize font-weight-bold">{{producto.title}}</span>:</a>
+                <p>{{producto.description}}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
